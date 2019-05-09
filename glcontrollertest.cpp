@@ -32,16 +32,25 @@ GLControllerTest::~GLControllerTest()
 void GLControllerTest::on_redHSlider_valueChanged(int value)
 {
     redController->setValues(value);
+    std::vector<int> colors;
+    colorController->getValues(colors);
+    ui->openGLWidget->updateColors(colors);
 }
 
 void GLControllerTest::on_greenHSlider_valueChanged(int value)
 {
     greenController->setValues(value);
+    std::vector<int> colors;
+    colorController->getValues(colors);
+    ui->openGLWidget->updateColors(colors);
 }
 
 void GLControllerTest::on_blueHSlider_valueChanged(int value)
 {
     blueController->setValues(value);
+    std::vector<int> colors;
+    colorController->getValues(colors);
+    ui->openGLWidget->updateColors(colors);
 }
 
 void GLControllerTest::on_redSBox_editingFinished()

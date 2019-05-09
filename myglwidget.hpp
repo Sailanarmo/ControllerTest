@@ -3,25 +3,32 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
+#include <vector>
 
 class MyGLWidget : public QOpenGLWidget, public QOpenGLFunctions
 {
     Q_OBJECT
 public:
     MyGLWidget(QWidget *parent = nullptr);
-    void drawTriangle();
+    void updateColors(const std::vector<int> &colors);
 
 protected:
-    void initializeGL() override;
+    void initializeGL();
+    void paintGL();
+    void resizeGL(int width, int height);
 
 private:
-    const GLfloat g_vertex_buffer_data[9]{
-        -1.0f,-1.0f,0.0f,
-        1.0f,-1.0f,0.0f,
-        0.0f,1.0f,0.0f,
-    };
 
-    GLuint vertexbuffer;
+    void draw();
+    void normalizeColors(float &r, float &g, float &b);
+    float normalize_0_1(float val, float min, float max) const;
+
+    const float RGB_MIN = 1.0f;
+    const float RGB_MAX = 255.0f;
+
+    float r = 150.0f;
+    float g = 120.0f;
+    float b = 32.0f;
 
 };
 
